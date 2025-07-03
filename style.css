@@ -46,6 +46,7 @@ section.cards {
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .card:active{
   transform: scale(0.97);
@@ -94,7 +95,6 @@ section.cards {
 .to-do-list {
   width: 100%;
   height: 100%;
-  display: block;
 }
 .to-do-list h3 {
   text-align: center;
@@ -192,6 +192,7 @@ section.cards {
   height: 4rem;
   background-color: var(--secondary-color);
   color: var(--text-color);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -208,6 +209,19 @@ section.cards {
   outline: none;
   font-size: 1.2rem;
   font-family: var(--font-family);
+}
+.lists ul li .imp-true{
+  color: var(--accent-color);
+  background-color: var(--text-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  position: absolute;
+  top: -10%;
+  left: 0;
+}
+.lists ul li .imp-false{
+  display: none;
 }
 .lists ul li button {
   background-color: var(--accent-color);

@@ -15,6 +15,7 @@ function CardsandCloseBtn() {
   });
 }
 CardsandCloseBtn();
+
 var list = [];
 function renderLists() {
   if (localStorage.getItem("taskLists")) {
@@ -27,6 +28,7 @@ function renderLists() {
   list.forEach((item, idx) => {
     sum += `<li class="item" id=${idx}>
                             <input type="text" id=${idx} value="${item.title}" readonly>
+                            <span class=imp-${item.imp}>imp</span>
                             <div class="btns">
                                 <button id=${idx} class="edit">Edit</button>
                                 <button id=${idx} class="delete">Delete</button>
@@ -34,6 +36,10 @@ function renderLists() {
                         </li>`;
   });
   todoList.innerHTML = sum;
+  
+  // Re-attach event listeners after DOM update
+  editTodo();
+  deleteTodo();
 }
 renderLists();
 
@@ -47,6 +53,7 @@ function createTodos() {
     list.push({ title: todoInput.value, desc: desc.value, imp: check.checked });
     localStorage.setItem("taskLists", JSON.stringify(list));
     renderLists();
+    // Remove location.reload() - not needed anymore
   });
 }
 createTodos();
@@ -72,13 +79,20 @@ function editTodo() {
         editBtn.classList.add("edit");
         localStorage.setItem("taskLists", JSON.stringify(list));
         renderLists();
-        location.reload();
+        // Remove location.reload() - not needed anymore
       }
     });
   });
 }
-editTodo();
 
 function deleteTodo(){
-  
+  let deletebtns = document.querySelectorAll(".item .btns .delete")
+  deletebtns.forEach((deleteBtn)=>{
+    deleteBtn.addEventListener("click",()=>{
+      list.splice(deleteBtn.id,1);
+      localStorage.setItem("taskLists",JSON.stringify(list))
+      renderLists();
+      // Remove location.reload() - not needed anymore     
+    })
+  })
 }
