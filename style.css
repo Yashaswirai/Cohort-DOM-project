@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #222831;
+  --secondary-color: #393e46;
+  --text-color: #00adb5;
+  --accent-color: #eeeeee;
+  --font-family: "Tomorrow", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  font-size: clamp(0.8rem, 1vw, 1rem);
+}
+main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 1rem;
+}
+section.cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+}
+.card {
+  width: 18rem;
+  height: 30rem;
+  background-color: var(--accent-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.card:active{
+  transform: scale(0.97);
+  transition: all 0.2s ease-in-out;
+}
+.card h2{
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  color: var(--primary-color);
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.details {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+.details .clsBtn{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--primary-color);
+  color: red;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.details .clsBtn:active{
+  scale: 0.97;
+  transition: all 0.1s ease-in-out;
+}
+.to-do-list {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.to-do-list h3 {
+  text-align: center;
+  font-size: 2.5rem;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+.todo-Container {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: space-between;
+}
+.create-todo{
+  width: 30%;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+}
+.create-todo form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: space-around;
+  /* gap: 1.5rem; */
+}
+.create-todo form input[type="text"] {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+.create-todo form textarea{
+  width: 100%;
+  height: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color);
+}
+.checkbox-container input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+.checkbox-container label {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.create-todo form button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  font-family: var(--font-family);
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.lists {
+  width: 65%;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+.lists ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.lists ul li {
+  width: 100%;
+  height: 4rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+.lists ul li input{
+  width: 80%;
+  background-color: transparent;
+  padding: 0.5rem;
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+}
+.lists ul li button {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.lists ul li .edit{
+  background-color: #FFCC00;
+  color: #471396;
+  font-weight: bold;
+}
+.lists ul li .delete {
+  background-color: red;
+  color: #fff;
+  font-weight: bold;
+}
