@@ -36,7 +36,7 @@ function renderLists() {
                         </li>`;
   });
   todoList.innerHTML = sum;
-  
+
   // Re-attach event listeners after DOM update
   editTodo();
   deleteTodo();
@@ -85,14 +85,46 @@ function editTodo() {
   });
 }
 
-function deleteTodo(){
-  let deletebtns = document.querySelectorAll(".item .btns .delete")
-  deletebtns.forEach((deleteBtn)=>{
-    deleteBtn.addEventListener("click",()=>{
-      list.splice(deleteBtn.id,1);
-      localStorage.setItem("taskLists",JSON.stringify(list))
+function deleteTodo() {
+  let deletebtns = document.querySelectorAll(".item .btns .delete");
+  deletebtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", () => {
+      list.splice(deleteBtn.id, 1);
+      localStorage.setItem("taskLists", JSON.stringify(list));
       renderLists();
-      // Remove location.reload() - not needed anymore     
-    })
-  })
+      // Remove location.reload() - not needed anymore
+    });
+  });
+}
+
+let dailyPlans = [];
+function renderPlans() {
+  dailyPlans = JSON.parse(localStorage.getItem("dailyPlans")) || [];
+  const time = Array.from(
+    { length: 18 },
+    (_, idx) => `${5 + idx}:00 - ${6 + idx}:00`
+  );
+  const schedules = document.querySelector(".schedules");
+  let schedule = "";
+  time.forEach((hour, idx) => {
+    schedule += `<div class="plan" id=${idx}>
+                    <h5>${hour}</h5>
+                    <input id=${idx} type="text" placeholder="..." value=${
+      dailyPlans[idx] || ""
+    }>
+                </div>`;
+  });
+  schedules.innerHTML = schedule;
+  Plans();
+}
+renderPlans();
+function Plans() {
+  let allInputs = document.querySelectorAll(".plan input");
+
+  allInputs.forEach((inpt, index) => {
+    inpt.addEventListener("input", () => {
+      dailyPlans[index] = inpt.value;
+      localStorage.setItem("dailyPlans", JSON.stringify(dailyPlans));
+    });
+  });
 }
