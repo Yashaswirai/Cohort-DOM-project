@@ -128,3 +128,13 @@ function Plans() {
     });
   });
 }
+
+async function MotivationalQuote(){
+  let res = await fetch('https://api.realinspire.live/v1/quotes/random');
+  const dets = await res.json();
+  let quote = document.querySelector(".motivation .quote")
+  let author = document.querySelector(".motivation .author")
+  quote.innerHTML = dets[0].content
+  author.innerHTML = `- ${dets[0].author}`  
+}
+MotivationalQuote()
