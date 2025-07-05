@@ -129,12 +129,105 @@ function Plans() {
   });
 }
 
-async function MotivationalQuote(){
-  let res = await fetch('https://api.realinspire.live/v1/quotes/random');
+async function MotivationalQuote() {
+  let res = await fetch("https://api.realinspire.live/v1/quotes/random");
   const dets = await res.json();
-  let quote = document.querySelector(".motivation .quote")
-  let author = document.querySelector(".motivation .author")
-  quote.innerHTML = dets[0].content
-  author.innerHTML = `- ${dets[0].author}`  
+  let quote = document.querySelector(".motivation .quote");
+  let author = document.querySelector(".motivation .author");
+  quote.innerHTML = dets[0].content;
+  author.innerHTML = `- ${dets[0].author}`;
 }
-MotivationalQuote()
+MotivationalQuote();
+
+function pomodoroTimer() {
+  const minute = document.querySelector("#minutes");
+  const second = document.querySelector("#seconds");
+  const start = document.querySelector("#startBtn");
+  const pause = document.querySelector("#pauseBtn");
+  const reset = document.querySelector("#resetBtn");
+  const session = document.querySelector(".session");
+  let min = Number(minute.value);
+  let sec = Number(second.value);
+  let totalSecond = min * 60 + sec;
+  minute.addEventListener("input", () => {
+    min = minute.value;
+    totalSecond = min * 60 + sec;
+  });
+  second.addEventListener("input", () => {
+    sec = second.value;
+    totalSecond = min * 60 + sec;
+  });
+
+  let timerInterval;
+  let working = true;
+  function startTimer() {
+    start.disabled = true;
+    pause.disabled = false;
+    reset.disabled = false;
+    session.innerHTML = working ? "Focus" : "Break Time";
+    pause.style.cursor = "pointer";
+    start.style.cursor = "not-allowed";
+    reset.style.cursor = "pointer";
+    timerInterval = setInterval(() => {
+      if (totalSecond <= 0 && working) {
+        clearInterval(timerInterval);
+        session.innerHTML = "Now Take a Break";
+        working = false;
+        start.disabled = false;
+        pause.disabled = true;
+        reset.disabled = true;
+        pause.style.cursor = "not-allowed";
+        start.style.cursor = "pointer";
+        reset.style.cursor = "not-allowed";
+        return;
+      } else if (totalSecond <= 0 && !working) {
+        clearInterval(timerInterval);
+        session.innerHTML = "Focus Again";
+        working = true;
+        start.disabled = false;
+        pause.disabled = true;
+        reset.disabled = true;
+        pause.style.cursor = "not-allowed";
+        start.style.cursor = "pointer";
+        reset.style.cursor = "not-allowed";
+        return;
+      }
+
+      totalSecond--;
+      min = Math.floor(totalSecond / 60);
+      sec = totalSecond % 60;
+
+      minute.value = min < 10 ? `0${min}` : min;
+      second.value = sec < 10 ? `0${sec}` : sec;
+    }, 1000);
+  }
+  function pauseTimer() {
+    start.disabled = false;
+    pause.disabled = true;
+    reset.disabled = false;
+    pause.style.cursor = "not-allowed";
+    start.style.cursor = "pointer";
+    reset.style.cursor = "pointer";
+    session.innerHTML = "Paused";
+    // Clear the interval to pause the timer
+    clearInterval(timerInterval);
+  }
+  function resetTimer() {
+    start.disabled = false;
+    pause.disabled = true;
+    reset.disabled = true;
+    pause.style.cursor = "not-allowed";
+    start.style.cursor = "pointer";
+    reset.style.cursor = "not-allowed";
+    session.innerHTML = "Focus";
+    minute.value = "25";
+    second.value = "00";
+    totalSecond = 25 * 60;
+    working = true;
+    clearInterval(timerInterval);
+  }
+  start.addEventListener("click", startTimer);
+  pause.addEventListener("click", pauseTimer);
+  reset.addEventListener("click", resetTimer);
+}
+pomodoroTimer();

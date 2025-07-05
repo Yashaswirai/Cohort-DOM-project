@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main>
         <section class="cards">
             <div class="card" id="0">
-                <img src="https://plus.unsplash.com/premium_photo-1673698725463-2e6214afc258?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img src="https://plus.unsplash.com/premium_photo-1673698725463-2e6214afc258?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
                 <h2>To Do List</h2>
             </div>
             <div class="card" id="1">
-                <img src="https://images.unsplash.com/photo-1743105351104-85e6ea22c72f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img src="https://images.unsplash.com/photo-1743105351104-85e6ea22c72f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
                 <h2>Daily planner</h2>
             </div>
             <div class="card" id="2">
-                <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
                 <h2>Pomodoro Timer</h2>
             </div>
             <div class="card" id="3">
-                <img src="https://images.unsplash.com/photo-1626096210204-6c2dcc81d6b9?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img src="https://images.unsplash.com/photo-1626096210204-6c2dcc81d6b9?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
                 <h2>Motivations</h2>
             </div>
             <div class="card" id="4">
-                <img src="https://images.unsplash.com/photo-1743105351315-540bce258f1d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <img src="https://images.unsplash.com/photo-1743105351315-540bce258f1d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
                 <h2>Daily Goals</h2>
             </div>
-            
+
         </section>
         <section class="details to-do-list">
             <button class="clsBtn" id="0">Close</button>
-            <h3>The Ultimate Task Organizer</h3>
-            <div class="todo-Container">
-                <div class="create-todo">
-                    <form>
-                        <input type="text" id="todoInput" placeholder="Add a new task...">
-                        <textarea name="Desc" id="Desc" placeholder="Describe the task..."></textarea>
-                        <div class="checkbox-container">
-                            <input type="checkbox" name="important" id="important">
-                            <label for="important">Mark as Important</label>
-                        </div>
-                        <button>Add to Task</button>
-                    </form>
+            <span>The Ultimate Task Organizer</h3>
+                <div class="todo-Container">
+                    <div class="create-todo">
+                        <form>
+                            <input type="text" id="todoInput" placeholder="Add a new task...">
+                            <textarea name="Desc" id="Desc" placeholder="Describe the task..."></textarea>
+                            <div class="checkbox-container">
+                                <input type="checkbox" name="important" id="important">
+                                <label for="important">Mark as Important</label>
+                            </div>
+                            <button>Add to Task</button>
+                        </form>
+                    </div>
+                    <div class="lists">
+                        <h3>Remaining tasks...</h3>
+                        <ul class="todoLists">
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="lists">
-                    <h3>Remaining tasks...</h3>
-                    <ul class="todoLists">
-                        
-                    </ul>
-                </div>
-            </div>
         </section>
         <section class="details daily-planner">
             <button class="clsBtn" id="1">Close</button>
@@ -61,10 +68,32 @@
                 <!-- Dynamically from JS -->
             </div>
         </section>
-        <section class="details">
+        <section class="details timer-page">
             <button class="clsBtn" id="2">Close</button>
-            <h2>Pomodoro Timer</h2>
-            <p>Boost your productivity with the Pomodoro Timer. Work in focused intervals and take short breaks to enhance concentration.</p>
+            <h2>Stay Focused</h2>
+            <div class="timer-container">
+                <div class="timer">
+                    <h1 class="session">Focus</h1>
+                    <div class="time-display">
+                        <div class="time">
+                            <div class="min">
+                                <input id="minutes" type="number" value="25">
+                                <label for="minutes">minutes</label>
+                            </div>
+                            <span>:</span>
+                            <div class="sec">
+                                <input type="number" id="seconds" value="00">
+                                <label for="seconds">seconds</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button id="startBtn">Start</button>
+                        <button id="pauseBtn">Pause</button>
+                        <button id="resetBtn">Reset</button>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="details motivation-page">
             <button class="clsBtn" id="3">Close</button>
@@ -85,4 +114,5 @@
     </main>
     <script src="script.js"></script>
 </body>
+
 </html>
