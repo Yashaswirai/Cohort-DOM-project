@@ -231,3 +231,134 @@ function pomodoroTimer() {
   reset.addEventListener("click", resetTimer);
 }
 pomodoroTimer();
+
+function DateTimeWeather() {
+  let monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let wallpaper = {
+    morning : "url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    afternoon : "url('https://images.unsplash.com/photo-1577257108037-e85032e84049?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    evening:"url('https://images.unsplash.com/photo-1508727786488-0d7201955bc0?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    night:"url('https://images.unsplash.com/photo-1488866022504-f2584929ca5f?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+  }
+  let header = document.querySelector("header");
+  let displaygreeting = document.querySelector(".greeting");
+  let displayDate = document.querySelector(".date");
+  let displayDay = document.querySelector(".day");
+  let displayTime = document.querySelector(".time");
+  let displayLoc = document.querySelector(".location");
+  let weatherIcon = document.querySelector(".weather-info img");
+  let displayTemp = document.querySelector(".temperature");
+  let displayHumidity = document.querySelector(".humidity");
+
+  function updateTime() {
+    let dt = new Date();
+    let day = dt.getDate();
+    let month = dt.getMonth(); // Months are zero-indexed
+    let year = dt.getFullYear();
+    let hours = dt.getHours();
+    let minutes = dt.getMinutes();
+    let seconds = dt.getSeconds();
+    if (hours >= 5 && hours < 12) {
+      displaygreeting.innerHTML = "Hello, Good Morning User!";
+      header.style.backgroundImage = wallpaper.morning;
+    } else if (hours >= 12 && hours < 17) {
+      displaygreeting.innerHTML = "Hello, Good Afternoon User!";
+      header.style.backgroundImage = wallpaper.afternoon;
+    } else if (hours >= 17 && hours < 21) {
+      displaygreeting.innerHTML = "Hello, Good Evening User!";
+      header.style.backgroundImage = wallpaper.evening;
+    } else {
+      displaygreeting.innerHTML = "Hello, Good Night User!";
+      header.style.backgroundImage = wallpaper.night;
+    }
+    if (hours > 12) {
+      hours -= 12;
+      displayTime.innerHTML = `${String(hours).padStart("2", 0)}:${String(
+        minutes
+      ).padStart("2", 0)}:${String(seconds).padStart("2", 0)} PM`;
+    } else {
+      displayTime.innerHTML = `${String(hours).padStart("2", 0)}:${String(
+        minutes
+      ).padStart("2", 0)}:${String(seconds).padStart("2", 0)} AM`;
+    }
+    displayDate.innerHTML = `${String(day).padStart("2", 0)} ${
+      monthNames[month]
+    } ${year}`;
+
+    displayDay.innerHTML = `, &nbsp${days[dt.getDay()]}`;
+  }
+  setInterval(updateTime, 1000);
+  function updateWeather() {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const key = "8b255b5a5c864081b6e55252252706";
+      let res = await fetch(
+        `http://api.weatherapi.com/v1/current.json?key=${key}&q=${lat},${lon}&aqi=no`
+      );
+      let data = await res.json();
+      displayLoc.innerHTML = `Location:- ${data.location.name}`;
+      displayTemp.innerHTML = `Temperature:- ${data.current.temp_c}°C`;
+      displayHumidity.innerHTML = `Humidity:- ${data.current.humidity}%`;
+      weatherIcon.src = data.current.condition.icon;
+    });
+  }
+  updateWeather();
+}
+DateTimeWeather();
+
+let flag = 1;
+function changeTheme() {
+  const themeToggle = document.querySelector(".theme");
+  const root = document.documentElement;
+  themeToggle.addEventListener("click", () => {
+    if (flag === 1) {
+      root.style.setProperty("--primary-color", "#FFF2E0");
+      root.style.setProperty("--secondary-color", "#C0C9EE");
+      root.style.setProperty("--text-color", "#A2AADB");
+      root.style.setProperty("--accent-color", "#898AC4");
+      flag = 2;
+    } else if (flag === 2) {
+      root.style.setProperty("--primary-color", "#E3FDFD");
+      root.style.setProperty("--secondary-color", "#CBF1F5");
+      root.style.setProperty("--text-color", "#A6E3E9");
+      root.style.setProperty("--accent-color", "#71C9CE");
+      flag = 3;
+    } else if (flag === 3) {
+      root.style.setProperty("--primary-color", "#090040");
+      root.style.setProperty("--secondary-color", "#471396");
+      root.style.setProperty("--text-color", "#B13BFF");
+      root.style.setProperty("--accent-color", "#FFCC00");
+      flag = 0;
+    } else if (flag === 0) {
+      root.style.setProperty("--primary-color", "#222831");
+      root.style.setProperty("--secondary-color", "#393e46");
+      root.style.setProperty("--text-color", "#00adb5");
+      root.style.setProperty("--accent-color", "#eeeeee");
+      flag = 1;
+    }
+  });
+}
+changeTheme();
