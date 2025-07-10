@@ -129,10 +129,22 @@
                 </div>
             </div>
         </section>
-        <section class="details">
+        <section class="details daily-goals">
             <button class="clsBtn" id="4">Close</button>
-            <h2>Daily Goals</h2>
-            <p>Set and track your Daily Goals. Define your objectives and monitor your progress to achieve success.</p>
+            <h2>Set Your Daily Goals</h2>
+            <div class="goals-container">
+                <form class="goal-form">
+                    <input type="text" id="goalInput" placeholder="Enter your goal...">
+                    <button type="submit">Add Goal</button>
+                </form>
+                <div class="goals">
+                    <h3>Your Today's Goal</h3>
+                    <div class="goal-list">
+                        <!-- Dynamically from JS -->
+                    </div>
+
+                </div>
+            </div>
         </section>
     </main>
     <script src="script.js"></script>

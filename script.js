@@ -257,11 +257,15 @@ function DateTimeWeather() {
     "Saturday",
   ];
   let wallpaper = {
-    morning : "url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-    afternoon : "url('https://images.unsplash.com/photo-1577257108037-e85032e84049?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-    evening:"url('https://images.unsplash.com/photo-1508727786488-0d7201955bc0?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-    night:"url('https://images.unsplash.com/photo-1488866022504-f2584929ca5f?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
-  }
+    morning:
+      "url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    afternoon:
+      "url('https://images.unsplash.com/photo-1577257108037-e85032e84049?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    evening:
+      "url('https://images.unsplash.com/photo-1508727786488-0d7201955bc0?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    night:
+      "url('https://images.unsplash.com/photo-1488866022504-f2584929ca5f?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+  };
   let header = document.querySelector("header");
   let displaygreeting = document.querySelector(".greeting");
   let displayDate = document.querySelector(".date");
@@ -362,3 +366,71 @@ function changeTheme() {
   });
 }
 changeTheme();
+
+const frm = document.querySelector(".goal-form");
+const inp = document.querySelector("#goalInput");
+let dailyGoals = [];
+
+frm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let dt = new Date();
+  let hours = dt.getHours();
+  let minutes = dt.getMinutes();
+  let t = "";
+  if (hours > 12) {
+    hours -= 12;
+    t = `${String(hours).padStart("2", 0)}:${String(minutes).padStart(
+      "2",
+      0
+    )} PM`;
+  } else {
+    t = `${String(hours).padStart("2", 0)}:${String(minutes).padStart(
+      "2",
+      0
+    )} AM`;
+  }
+  dailyGoals.push({
+    id: inp.value.replaceAll(" ", "-"),
+    topic: inp.value,
+    time: t,
+  });  
+  localStorage.setItem("dailyGoals", JSON.stringify(dailyGoals));  
+  renderGoals();
+  inp.value = "";  
+});
+function renderGoals() {
+  const goalList = document.querySelector(".goal-list");
+  let s = '';
+  dailyGoals = JSON.parse(localStorage.getItem("dailyGoals")) || [];
+  if (dailyGoals.length > 0) {
+    s = dailyGoals
+      .map(
+        (goal) => `<div class="goal" id="${goal.id}">
+                        <input type="checkbox" name="${goal.id}" id="${goal.id}">
+                        <label for="${goal.id}">${goal.topic}</label>
+                        <div class="rightEnd">
+                            <h5 class="created-Time">${goal.time}</h5>
+                            <button class="delete-btn" id=${goal.id}>Delete</button>
+                        </div>
+                    </div>`
+      )
+      .join('');
+  } else {
+    s = `<h1>Add your todays Goal</h1>`;
+  }
+  goalList.innerHTML = s;
+  deleteGoal();
+}
+renderGoals();
+function deleteGoal() {
+  const deleteBtns = document.querySelectorAll(".delete-btn");
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let goalId = btn.id;
+      dailyGoals = dailyGoals.filter((goal) => goal.id !== goalId);
+      localStorage.setItem("dailyGoals", JSON.stringify(dailyGoals));
+      renderGoals();
+    });
+  });
+}
+deleteGoal();
