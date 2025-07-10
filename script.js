@@ -53,7 +53,9 @@ function createTodos() {
     list.push({ title: todoInput.value, desc: desc.value, imp: check.checked });
     localStorage.setItem("taskLists", JSON.stringify(list));
     renderLists();
-    // Remove location.reload() - not needed anymore
+    todoInput.value = "";
+    desc.value = "";
+    check.checked = false;
   });
 }
 createTodos();
@@ -320,7 +322,7 @@ function DateTimeWeather() {
       const lon = position.coords.longitude;
       const key = "8b255b5a5c864081b6e55252252706";
       let res = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${key}&q=${lat},${lon}&aqi=no`
+        `https://api.weatherapi.com/v1/current.json?key=${key}&q=${lat},${lon}&aqi=no`
       );
       let data = await res.json();
       displayLoc.innerHTML = `Location:- ${data.location.name}`;
