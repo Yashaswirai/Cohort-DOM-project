@@ -2,7 +2,7 @@
 
 # 🧠 Productivity Dashboard
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-00adb5?style=for-the-badge)](https://vanilla-desktop-os.onrender.com)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-00adb5?style=for-the-badge)](https://yashaswirai.github.io/Cohort-DOM-project/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -47,35 +47,13 @@
 
 <div align="center">
 
-### 🔗 [**Experience the Dashboard Live**](https://vanilla-desktop-os.onrender.com)
+### 🔗 [**Experience the Dashboard Live**](https://yashaswirai.github.io/Cohort-DOM-project/)
 
 *Click above to explore all features in your browser*
 
 </div>
 
----
 
-## � Screenshots
-
-<details>
-<summary>🖼️ View Screenshots</summary>
-
-> **Note**: Screenshots showcase the dashboard's responsive design and multiple theme options
-
-### Main Dashboard
-*The clean, card-based interface with real-time weather and time display*
-
-### Feature Modals
-*Interactive modals for each productivity tool*
-
-### Theme Variations
-*Four beautiful themes to match your preference*
-
-> 💡 **Tip**: Screenshots will be added here when hosting on GitHub or portfolio sites
-
-</details>
-
----
 
 ## ✨ Key Features
 
@@ -200,7 +178,7 @@
 <summary><b>Method 1: Quick Start (No Installation)</b></summary>
 
 ### 🌐 Use the Live Demo
-1. Visit [https://vanilla-desktop-os.onrender.com](https://vanilla-desktop-os.onrender.com)
+1. Visit [https://yashaswirai.github.io/Cohort-DOM-project/](https://yashaswirai.github.io/Cohort-DOM-project/)
 2. Start using all features immediately
 3. Your data will be saved to your browser's localStorage
 
@@ -211,8 +189,8 @@
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/productivity-dashboard.git
-cd productivity-dashboard
+git clone https://github.com/Yashaswirai/Cohort-DOM-project.git
+cd Cohort-DOM-project
 ```
 
 ### 2️⃣ Open in Browser
@@ -423,8 +401,8 @@ git push origin feature/AmazingFeature
 
 *B.Tech in Computer Science & Engineering (Data Science Specialization)*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashaswi-yourprofile)
-[![Portfolio](https://img.shields.io/badge/Portfolio-00adb5?style=for-the-badge&logo=About.me&logoColor=white)](https://yashaswi.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashaswi-rai-real/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-00adb5?style=for-the-badge&logo=About.me&logoColor=white)](https://yashaswirai.github.io/Web_Resume/)
 
 </div>
 
